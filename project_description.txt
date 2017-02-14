@@ -1,9 +1,30 @@
-For the final project of QMSS G5069, Team 4 has decided to utilize the Yelp user dataset in order to uncover insights about consumer preferences. More specifically, we want to investigate if consumer preferences vary geographically.  For example, do people who live in cities with a higher population density value service speed more than people who live in rural locations? As an intermediary step, we will also look at what makes a review useful. By understanding the characteristics of the most helpful reviews it will help us to give more relevant weights to certain reviews that may be more impactful businesses.
+Course Project - Team 4
 
-In order to answer this question, we will employ different data and text mining techniques, starting with exploratory analysis to look at how business ratings by categories vary across geographic locations. We will then seek to build a predictive model with rating as the dependent variable, to see if there is an interaction effect between geographic location and the coefficient on attributes of the customer's experience (e.g. reviews highlighting speed, taste, accuracy etc.).
+1. Project Description
+2. Insight
+
+Our team has decided to utilize the Yelp user dataset in order to uncover insights about consumer preferences. More specifically, we want to investigate if consumer preferences vary geographically.  For example, do people who live in cities with a higher population density value service speed more than people who live in rural locations? 
+
+As an intermediary step, we will also look at what makes a review useful (e.g. word choice, level of detail etc.). By understanding the characteristics of helpful reviews, we are better able to give more relevant weights to certain reviews that may be more impactful.
+
+Through this project, we hope to answer the above two questions, and understand the demands of consumers better. With this knowledge, businesses can improve on their existing service models.
+
+3. Research Strategy
+
+In order to answer this question, we will employ different data and text mining techniques, starting with exploratory analysis to look at how business ratings by categories (service, taste etc.) vary across geographic locations. This allows us to see if variation in consumer preferences actually exist across geographically.
+
+Using text analysis techniques (e.g. keywords, bag-of-words), we will classify reviews according to their focus, and calculate the frequencies of review for each category.
+
+Finally, to confirm our theory, we will seek to build a regression model with rating as the dependent variable, and see if there are any significant interaction effects between geographic location and other coefficients capturing attributes of the customer's experience.
+
+4. Data
 
 Within the challenge dataset, Yelp provides 5 types of information – business, consumer, review text, checkins and tips. We are likely to use the business dataset for general business attributes, and the review and tips texts for text analysis.
 
 The advantages of the Yelp data are that it is relatively clean and provides a large enough corpus for text analysis (reviews and tips). However, since the data only covers 11 cities in 4 countries the demographics might be relatively homogeneous, and therefore insufficient variation in consumer preferences for analysis.
 
-Through investigating consumer preferences, our output will allow businesses to understand quantitatively the impact of different attributes/topics/keywords of reviews and how it affects their overall rating on the Yelp platform. We may also uncover intermediary insights regarding characteristics of useful reviews.
+5. Output
+
+Our tangible outputs will include a visualization of key consumer preferences across different geographical locations. In addition, we will also have a regression table, which indicates the effect of various attributes on a business rating. 
+
+Our project will allow businesses to understand quantitatively the impact of different attributes/topics/keywords of reviews and how it affects their overall rating on the Yelp platform. Through this process, we may also uncover intermediary insights regarding characteristics of useful reviews.
