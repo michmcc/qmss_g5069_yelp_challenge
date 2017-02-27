@@ -15,7 +15,7 @@ library(ggthemes)
 ```
 ```{r}
 # Data Wrangling
-yelp_business <- read.csv("~/Documents/Columbia/5069_Applied Data Science/Project/business.csv")
+yelp_business <- read.csv("../data/interim/business.csv")
 
 restaurants <- yelp_business %>%
   separate(categories, into = c("cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7", "cat8", 
@@ -41,9 +41,13 @@ restaurants <- yelp_business %>%
            cat8 == "Restaurants" | 
            cat9 == "Restaurants" )
 ```
+```{r}
+# Updated to Export Restaurant
+write.csv(restaurants, "../data/processed/restaurants.csv")
+```
 
 ```{r}
-restaurants <- read.csv("~/Documents/Columbia/5069_Applied Data Science/Project/restaurants.csv")
+restaurants <- read.csv("../data/processed/restaurants.csv")
 ```
 
 ```{r}
