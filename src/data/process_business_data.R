@@ -26,9 +26,22 @@ print("converting category variable to list of vectors")
 business$categories_l <- lapply(business$categories, convert_to_vector)
 #business$attributes_l <- lapply(business$attributes, convert_to_vector)
 
+# Create dummy variable for large city vs smaller city
 # Dummy variable for Restaurants
 print("creating dummy variables")
 business$restaurant <- unlist(lapply(business$categories_l, function(x) {unlist(ifelse("Restaurants" %in% x, 1, 0))}))
+
+agg <- aggregate(business$restaurant, by=list(city=business$city), FUN=sum)
+large_cities <- subset(agg, x > 500)$city
+small_cities <- subset(agg, x <= 500)$city
+business$city_type <- unlist(lapply(business$city, function (x) {ifelse(x %in% large_cities, 1, 0)}))
+
+# Output files
+print("output processed business csv")
+write.csv(business[, !(names(business) == "categories_l")], "../../data/processed/business.csv")
+
+print("output new restaurants csv")
+write.csv(business[business$restaurant == 1 & business$city_type == 1, !(names(business) == "categories_l")], "../../data/processed/restaurants.csv")
 
 # QA against exploratory restaurant counts
 # agg <- aggregate(business$restaurant, by=list(city=business$city), FUN=sum)
@@ -38,9 +51,3 @@ business$restaurant <- unlist(lapply(business$categories_l, function(x) {unlist(
 # Number of categories per business
 # table(unlist(lapply(business$categories_l, length)))
 
-# Output files
-print("output processed business csv")
-write.csv(business[, !(names(business) == "categories_l")], "../../data/processed/business.csv")
-
-print("output new restaurants csv")
-write.csv(business[business$restaurant == 1, !(names(business) == "categories_l")], "../../data/processed/restaurants.csv")
