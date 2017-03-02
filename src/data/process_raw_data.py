@@ -1,5 +1,6 @@
 import pandas as pd
-import ujson
+#import ujson
+import json
 import random
 import csv
 
@@ -19,19 +20,19 @@ tipcsv = '../../data/interim/tip.csv'
 
 
 with open(businessfile, 'r') as f:
-    businessheader = [str(key) for key in ujson.loads(f.readline())]
+    businessheader = [str(key) for key in json.loads(f.readline())]
     
 with open(reviewfile, 'r') as f:
-    reviewheader = [str(key) for key in ujson.loads(f.readline())]
+    reviewheader = [str(key) for key in json.loads(f.readline())]
 
 with open(userfile, 'r') as f:
-    userheader = [str(key) for key in ujson.loads(f.readline())]
+    userheader = [str(key) for key in json.loads(f.readline())]
                   
 with open(checkinfile, 'r') as f:
-    checkinheader = [str(key) for key in ujson.loads(f.readline())]
+    checkinheader = [str(key) for key in json.loads(f.readline())]
 
 with open(tipfile, 'r') as f:
-    tipheader = [str(key) for key in ujson.loads(f.readline())]
+    tipheader = [str(key) for key in json.loads(f.readline())]
 
 
 # Define function to write lines of a json to a csv file
@@ -48,7 +49,7 @@ def json_to_csv(filename, header, csvfilename):
         csvwriter.writerow(header)
         for line in f:
             count += 1
-            row = ujson.loads(line)
+            row = json.loads(line)
             csvwriter.writerow([unicode(v).encode("utf-8") for k,v in row.iteritems()])
             if (count % step) == 0:
                 print 'Read {0} records'.format(count)
