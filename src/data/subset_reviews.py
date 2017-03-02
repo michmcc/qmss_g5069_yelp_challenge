@@ -39,6 +39,9 @@ with open(rreviews_csv, 'a') as f:
 		
 print('Finished output of {0}').format(rreviews_csv)
 
+# new reader
+review_rdr = pd.read_csv('../../data/interim/review.csv', chunksize = 10 ** 5 * 2)
+
 # merge and write restaurant reviews to csv
 print('Write restaurant reviews sample file')
 with open(rreviews_sample_csv, 'a') as f:
