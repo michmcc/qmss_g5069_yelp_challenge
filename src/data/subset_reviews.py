@@ -3,52 +3,40 @@ import csv
 
 # reader for reviews
 review_header = pd.read_csv('../../data/interim/review.csv', nrows = 0)
-review_rdr = pd.read_csv('../../data/interim/review.csv', chunksize = 10 ** 5 * 2)
+#review_rdr = pd.read_csv('../../data/interim/review.csv', chunksize = 10 ** 5 * 2)
 
 # read in restaurants
 print('Read in restaurants file')
-restaurants = pd.read_csv('../../data/processed/restaurants.csv', usecols = ['business_id'])
+#restaurants = pd.read_csv('../../data/processed/restaurants.csv', usecols = ['business_id'])
+global_restaurants = pd.read_csv('../../data/processed/global_restaurants.csv', usecols = ['business_id'])
+us_restaurants = pd.read_csv('../../data/processed/us_restaurants.csv', usecols = ['business_id'])
 
-# read in reviews and only keep those for restaurants in big cities
-# write header row
-print('Write header row of restaurant reviews file')
-rreviews_csv = '../../data/processed/restaurant_reviews.csv'
-outputcsv = open(rreviews_csv, 'w')
-csvwriter = csv.writer(outputcsv)
-csvwriter.writerow(list(review_header))
-outputcsv.close()
+# define function which merges the reviews with a given subset file (restaurants, global_restaurants, us_restaurants) 
+# and outputs the reviews to a csvfile
 
-print('Write header row of restaurant reviews sample file')
-rreviews_sample_csv = '../../data/processed/restaurant_reviews_sample.csv'
-outputcsv = open(rreviews_sample_csv, 'w')
-csvwriter = csv.writer(outputcsv)
-csvwriter.writerow(list(review_header))
-outputcsv.close()
+def subset_reviews(csvfilename, business_subset, sample = 1.0):
+	print('Write header for {0}').format(csvfilename)
+	#csvfile = '../../data/processed/{0}'.format(csvfilename)
+	outputcsv = open(csvfilename, 'w')
+	csvwriter = csv.writer(outputcsv)
+	csvwriter.writerow(list(review_header))
+	outputcsv.close()
+	print('Merge subset with reviews, with {0}% sample and output {1}').format(sample*100, csvfilename)
+	count = 0
+	review_rdr = pd.read_csv('../../data/interim/review.csv', chunksize = 10 ** 5 * 2)
+	with open(csvfilename, 'a') as f:
+		for lines in review_rdr:
+			data = pd.merge(lines, business_subset, on = 'business_id', how = 'inner')
+			data.sample(frac = sample).to_csv(f, header = False)
+			count += data.size
+			print('Processed {0} reviews'.format(count))
+	print('Finished output of {0}').format(csvfilename)
 
-#rreviews = pd.DataFrame()
-count = 0
 
-# merge and write restaurant reviews to csv
-print('Write restaurant reviews file')
-with open(rreviews_csv, 'a') as f:
-	for lines in review_rdr:
-		data = pd.merge(lines, restaurants, on = 'business_id', how = 'inner')
-		data.to_csv(f, header = False)
-		count += data.size
-		print('Processed {0} reviews'.format(count))
-		
-print('Finished output of {0}').format(rreviews_csv)
+# subset global restaurant reviews
+subset_reviews('../../data/processed/gbl_restaurant_reviews_50.csv', global_restaurants, .50)
+subset_reviews('../../data/processed/gbl_restaurant_reviews_10.csv', global_restaurants, .10)
 
-# new reader
-review_rdr = pd.read_csv('../../data/interim/review.csv', chunksize = 10 ** 5 * 2)
-
-# merge and write restaurant reviews to csv
-print('Write restaurant reviews sample file')
-with open(rreviews_sample_csv, 'a') as f:
-	for lines in review_rdr:
-		data = pd.merge(lines, restaurants, on = 'business_id', how = 'inner')
-		data.sample(frac = .5).to_csv(f, header = False)
-		count += data.size
-		print('Processed {0} reviews'.format(count))
-
-print('Finished output of {0}').format(rreviews_sample_csv)
+# subset us restaurant reviews
+subset_reviews('../../data/processed/us_restaurant_reviews_50.csv', us_restaurants, .50)
+subset_reviews('../../data/processed/us_restaurant_reviews_10.csv', us_restaurants, .10)
