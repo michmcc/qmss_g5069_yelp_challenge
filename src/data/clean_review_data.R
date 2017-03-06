@@ -49,6 +49,3 @@ cpdtm_matrix <- sparseMatrix(cpdtm$i, cpdtm$j, x = cpdtm$v,
                              dims = c(cpdtm$nrow, cpdtm$ncol),
                              dimnames = cpdtm$dimnames)
 
-## save document term matrix as R object
-save(cpdtm, cpdtm_matrix, file = "cpdtm.RData")
-# retrieve data with load("cpdtm.RData")
