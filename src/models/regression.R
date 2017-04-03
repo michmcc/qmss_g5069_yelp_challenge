@@ -10,7 +10,7 @@ topics <- read.csv("../../data/processed/business_topics.csv")
 topics <- topics %>%
   select(business_id, review_cnt, topic_1, topic_2, topic_3)
 
-reviews <- read.csv("../../data/processed/review_summary.csv")
+reviews <- read.csv("../../data/processed/review_summary.RData")
 reviews <- reviews %>%
   select(business_id, sumBID, meannum, meansentiment)
 
