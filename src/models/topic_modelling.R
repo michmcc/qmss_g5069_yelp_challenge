@@ -42,13 +42,43 @@ load("../../data/processed/cpdtm_unstem_bi.RData")
 
 ## bigram unstemmed data
 
-## set 3 topics
+## set 4 topics
 set.seed(1234)
 k <- 3
-output <- LDA(cpdtm_unstem_bi_train, k, control=list(seed=0), method = "Gibbs")
+output_3 <- LDA(cpdtm_unstem_bi_train, k, control=list(seed=1), method = "Gibbs")
+
+
+k <- 4
+output_4 <- LDA(cpdtm_unstem_bi_train, k, control=list(seed=1), method = "Gibbs")
+
+
+k <- 5
+output_5 <- LDA(cpdtm_unstem_bi_train, k, control=list(seed=1), method = "Gibbs")
 
 # output words per topic
-terms(output, 15)
+terms(output_3, 15)
+
+
+# get probability of each word to a particular topic
+terms_3 <- as.data.frame(t(posterior(output_3)$terms))
+terms_3 <- data.frame(word = rownames(terms_3), terms_3, row.names = NULL)
+
+terms_4 <- as.data.frame(t(posterior(output_4)$terms))
+terms_4 <- data.frame(word = rownames(terms_4), terms_4, row.names = NULL)
+
+terms_5 <- as.data.frame(t(posterior(output_5)$terms))
+terms_5 <- data.frame(word = rownames(terms_5), terms_5, row.names = NULL)
+
+
+## output terms for word clouds
+save(terms_3, file = "../../data/processed/terms_3.Rdata")
+save(terms_4, file = "../../data/processed/terms_4.Rdata")
+save(terms_5, file = "../../data/processed/terms_5.Rdata")
+
+# perplexity analysis (TBC)
+#p_k_10 <- perplexity(output, cpdtm_unstem_bi)
+
+
 
 # assign topic to each review in the FULL training set
 full.topics <- posterior(output,cpdtm_unstem_bi)

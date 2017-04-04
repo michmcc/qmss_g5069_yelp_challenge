@@ -2,7 +2,8 @@ library(tidytext)
 library(tidyverse)
 library(SnowballC)
 
-us_restaurant_review <- read.csv("../../data/processed/us_restaurant_reviews_10.csv", row.names = NULL)
+#us_restaurant_review <- read.csv("../../data/processed/us_restaurant_reviews_10.csv", row.names = NULL)
+us_restaurant_review <- read.csv("../../data/processed/us_restaurant_reviews_50.csv", row.names = NULL)
 
 corpus <- us_restaurant_review %>%
   select(business_id, review_id, text, stars, date, useful) %>%
