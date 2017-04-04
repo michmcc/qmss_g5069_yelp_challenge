@@ -53,6 +53,12 @@ stargazer(dietary1, dietary2, dietary3, dietary4, dietary5, dietary6, dietary7, 
 # type of setting
 setting1 <- lm(stars ~ Cafes + Bars + Pubs + Fast.Food + Food.Trucks + Diners + meansentiment + sumBID + meannum + topic_1 + topic_2 + topic_3 + topic_4, data = total, subset = city == "Charlotte")
 setting2 <- lm(stars ~ Cafes + Bars + Pubs + Fast.Food + Food.Trucks + Diners + meansentiment + sumBID + meannum + topic_1 + topic_2 + topic_3 + topic_4, data = total, subset = city == "Cleveland")
-stargazer(setting1, setting2, type = 'html'
+setting3 <- lm(stars ~ Cafes + Bars + Pubs + Fast.Food + Food.Trucks + Diners + meansentiment + sumBID + meannum + topic_1 + topic_2 + topic_3 + topic_4, data = total, subset = city == "Las Vegas")
+setting4 <- lm(stars ~ Cafes + Bars + Pubs + Fast.Food + Food.Trucks + Diners + meansentiment + sumBID + meannum + topic_1 + topic_2 + topic_3 + topic_4, data = total, subset = city == "Mesa")
+setting5 <- lm(stars ~ Cafes + Bars + Pubs + Fast.Food + Food.Trucks + Diners + meansentiment + sumBID + meannum + topic_1 + topic_2 + topic_3 + topic_4, data = total, subset = city == "Phoenix")
+setting6 <- lm(stars ~ Cafes + Bars + Pubs + Fast.Food + Food.Trucks + Diners + meansentiment + sumBID + meannum + topic_1 + topic_2 + topic_3 + topic_4, data = total, subset = city == "Pittsburgh")
+setting7 <- lm(stars ~ Cafes + Bars + Pubs + Fast.Food + Food.Trucks + Diners + meansentiment + sumBID + meannum + topic_1 + topic_2 + topic_3 + topic_4, data = total, subset = city == "Scottsdale")
+
+stargazer(setting1, setting2, setting3, setting4, setting5, setting6, setting7, type = 'html'
           , out = "../../reports/setting_model_output.html", out.header = TRUE)
 
