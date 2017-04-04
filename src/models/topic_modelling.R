@@ -81,7 +81,8 @@ save(terms_5, file = "../../data/processed/terms_5.Rdata")
 
 
 # assign topic to each review in the FULL training set
-full.topics <- posterior(output,cpdtm_unstem_bi)
+# running for 4 topics
+full.topics <- posterior(output_4,cpdtm_unstem_bi)
 full.topics <- apply(full.topics$topics, 1, which.max)
 
 review_topics <- as.data.frame(full.topics)
@@ -94,7 +95,7 @@ review_topics <- review_topics[, c("business_id", "review_id", "full.topics")]
 
 business_topic_cnt <- as.data.frame.matrix(table(review_topics$business_id, review_topics$full.topics))
 business_topic_cnt <- data.frame(business_id = rownames(business_topic_cnt), business_topic_cnt, row.names = NULL)
-colnames(business_topic_cnt) <- c("business_id", "topic_1", "topic_2", "topic_3")
+colnames(business_topic_cnt) <- c("business_id", "topic_1", "topic_2", "topic_3", "topic_4")
 
 business_review_cnt <- as.data.frame(table(review_topics$business_id))
 colnames(business_review_cnt) <- c("business_id", "review_cnt")
