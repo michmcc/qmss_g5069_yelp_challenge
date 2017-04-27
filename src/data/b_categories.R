@@ -28,5 +28,5 @@ for (i in 1:16596){
   }
 }
 
-
+save(business, file = "../../data/processed/b_categories.csv")
 
