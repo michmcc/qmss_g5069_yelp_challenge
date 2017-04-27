@@ -1,7 +1,25 @@
-yelp_challenge
+Yelp Challenge - Team 4
 ==============================
 
-Analysis of the Yelp CChallenge Dataset
+## Steps:
+
+### Processing data:
+- Download Yelp dataset from: https://www.yelp.com/dataset_challenge
+- Unzip and put .json files into data/raw folder
+- Run src/data/process_raw_data.py
+
+For businesses:
+- Run src/data/process_business_data.R
+- Run src/data/b_categories.R
+
+For reviews:
+- Run src/data/subset_reviews.py
+- Run src/data/clean_review_data.R
+- Run src/data/summarise_review.R
+
+### Modelling:
+- Run src/models/regression.R for regression model
+- Run src/models/topic_modelling.R for topic modelling
 
 Project Organization
 ------------
