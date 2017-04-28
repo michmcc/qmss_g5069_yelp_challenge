@@ -1,11 +1,13 @@
 Yelp Challenge - Team 4
+Yuxin Hu, Veronica Lee, Michael Mccarthy, Nigel Poh, Tiantian Yin 
 ==============================
 
 ## Steps:
 
 ### Processing data:
 - Download Yelp dataset from: https://www.yelp.com/dataset_challenge
-- Unzip and put .json files into data/raw folder
+- Create a data folder containing four empty folders named external, interim, processed and raw under the local repo
+- Unzip Yelp dataset and put .json files into data/raw folder
 - Run src/data/process_raw_data.py
 
 For businesses:
