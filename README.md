@@ -1,6 +1,7 @@
 Yelp Challenge - Team 4
-- Yuxin Hu, Veronica Lee, Michael Mccarthy, Nigel Poh, Tiantian Yin 
 ==============================
+Yuxin Hu, Veronica Lee, Michael Mccarthy, Nigel Poh, Tiantian Yin
+
 
 ## Steps:
 
