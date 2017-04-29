@@ -1,7 +1,28 @@
-yelp_challenge
+Yelp Challenge - Team 4
 ==============================
+Yuxin Hu, Veronica Lee, Michael Mccarthy, Nigel Poh, Tiantian Yin
 
-Analysis of the Yelp CChallenge Dataset
+
+## Steps:
+
+### Processing data:
+- Download Yelp dataset from: https://www.yelp.com/dataset_challenge
+- Create a data folder containing four empty folders named external, interim, processed and raw under the local repo
+- Unzip Yelp dataset and put .json files into data/raw folder
+- Run src/data/process_raw_data.py
+
+For businesses:
+- Run src/data/process_business_data.R
+- Run src/data/b_categories.R
+
+For reviews:
+- Run src/data/subset_reviews.py
+- Run src/data/clean_review_data.R
+- Run src/data/summarise_review.R
+
+### Modelling:
+- Run src/models/regression.R for regression model
+- Run src/models/topic_modelling.R for topic modelling
 
 Project Organization
 ------------
